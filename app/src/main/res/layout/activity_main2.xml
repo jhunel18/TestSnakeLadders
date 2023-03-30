@@ -56,7 +56,7 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
+            android:layout_width="432dp"
             android:layout_height="match_parent"
             android:layout_above="@+id/b1_roll"
             android:layout_alignParentLeft="true"
