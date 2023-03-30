@@ -228,6 +228,7 @@ class Main2Activity : AppCompatActivity() {
             b1_roll!!.isEnabled = false
             b1_roll!!.postDelayed({
 //                AI()
+
                 b1_roll!!.isEnabled = true
                 if (count == 99) {
                     val alertDialog = AlertDialog.Builder(this@Main2Activity).create()
@@ -256,7 +257,19 @@ class Main2Activity : AppCompatActivity() {
                     i2!!.x= (9-count%10.toFloat())*110
                     i2!!.y= 1250f-((count)/10)*110
                 }
-
+//                AI()
+//                if (count1<10){
+//                    i1!!.x= count1.toFloat() *110
+//                    i1!!.y= 1250f
+//                }
+//                else if((count1)/10%2==0){
+//                    i1!!.x= count1%10.toFloat()*110
+//                    i1!!.y= 1250f-((count1)/10)*110
+//                }
+//                else {
+//                    i1!!.x= (9-count1%10.toFloat())*110
+//                    i1!!.y= 1250f-(count1/10)*110
+//                }
 
             }, 1000)
         }
