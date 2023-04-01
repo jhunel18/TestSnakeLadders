@@ -5,7 +5,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMain2Binding
+import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityGameBinding
 import java.util.*
 
 class GameActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class GameActivity : AppCompatActivity() {
     var i1: ImageView? = null
     var player1: ImageView? = null
 
-    private lateinit var binding:ActivityMain2Binding
+    private lateinit var binding:ActivityGameBinding
 
 
 //    fun AI() {
@@ -132,7 +132,7 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMain2Binding.inflate(layoutInflater)
+        binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 

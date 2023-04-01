@@ -1,47 +1,48 @@
-package ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders
+    package ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
-import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+    import android.content.Intent
+    import android.os.Bundle
+    import android.view.animation.AnimationUtils
+    import androidx.appcompat.app.AppCompatActivity
+    import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMainBinding
 
-    private lateinit var binding: ActivityMainBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    class MainActivity : AppCompatActivity() {
 
-//        val floatingImage = findViewById<ImageView>(R.id.floating_image)
-//        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
-//        floatingImage.startAnimation(floatAnimation)
-        val floatingImage = binding.floatingImage
-        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
-        floatingImage.startAnimation(floatAnimation)
+        private lateinit var binding: ActivityMainBinding
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+    //        setContentView(R.layout.activity_main)
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        binding.buttonGame.setOnClickListener{
-            val goToPlay =Intent(applicationContext,GameActivity::class.java
-            )
-            startActivity(goToPlay)
+    //        val floatingImage = findViewById<ImageView>(R.id.floating_image)
+    //        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
+    //        floatingImage.startAnimation(floatAnimation)
+            val floatingImage = binding.floatingImage
+            val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
+            floatingImage.startAnimation(floatAnimation)
+
+            binding.buttonGame.setOnClickListener{
+                val goToPlayerLobby =Intent(applicationContext,PlayerLobbyActivity::class.java
+                )
+                startActivity(goToPlayerLobby)
+            }
+
+            binding.buttonInstruction.setOnClickListener{
+                val goToInstruction =Intent(applicationContext,Instruction::class.java
+                )
+                startActivity(goToInstruction)
+            }
         }
 
-        binding.buttonInstruction.setOnClickListener{
-            val goToInstruction =Intent(applicationContext,Instruction::class.java
-            )
-            startActivity(goToInstruction)
-        }
+    //    fun gotos(view: View?) {
+    //        val nextpage = Intent(this@MainActivity, Main2Activity::class.java)
+    //        startActivity(nextpage)
+    //    }
+    //
+    //    fun gotox(view: View?) {
+    //        val nextpages = Intent(this@MainActivity, Instruction::class.java)
+    //        startActivity(nextpages)
+    //    }
     }
-
-//    fun gotos(view: View?) {
-//        val nextpage = Intent(this@MainActivity, Main2Activity::class.java)
-//        startActivity(nextpage)
-//    }
-//
-//    fun gotox(view: View?) {
-//        val nextpages = Intent(this@MainActivity, Instruction::class.java)
-//        startActivity(nextpages)
-//    }
-}
