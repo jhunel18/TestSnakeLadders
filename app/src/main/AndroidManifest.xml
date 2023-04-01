@@ -12,10 +12,13 @@
         android:theme="@style/Theme.TestSnakeLadders"
         tools:targetApi="31">
         <activity
+            android:name=".PlayerLobbyActivity"
+            android:exported="false" />
+        <activity
             android:name=".Splash"
             android:exported="false" />
         <activity
-            android:name=".Main2Activity"
+            android:name=".GameActivity"
             android:exported="false" />
         <activity
             android:name=".Instruction"

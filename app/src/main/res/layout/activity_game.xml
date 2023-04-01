@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".`Main2Activity.java`">
+    tools:context=".GameActivity">
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -28,6 +28,7 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1">
 
+
         <Button
             android:id="@+id/b1_roll"
             android:layout_width="80dp"
@@ -48,14 +49,14 @@
             android:layout_height="80dp"
             android:scaleType="centerInside"
             android:src="@drawable/defaulted"
-            android:layout_below="@+id/imageView"
+            android:layout_below="@+id/board"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="34dp"
             android:layout_marginEnd="34dp" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/board"
             android:layout_width="432dp"
             android:layout_height="match_parent"
             android:layout_above="@+id/b1_roll"
@@ -67,12 +68,10 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/player1_pawn_red"
         android:layout_width="10dp"
         android:layout_height="10dp"
-
         android:layout_alignParentStart="true"
-
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/box"
         tools:layout_constraintBottom_creator="1"
@@ -81,7 +80,7 @@
         android:layout_marginBottom="250dp"/>
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/player2_pawn_black"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_alignParentLeft="true"
