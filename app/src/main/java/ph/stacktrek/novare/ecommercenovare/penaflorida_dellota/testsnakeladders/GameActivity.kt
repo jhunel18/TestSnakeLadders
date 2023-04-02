@@ -30,8 +30,6 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         b1_roll = binding.b1Roll
         iv_dice = binding.ivDice
 
@@ -42,14 +40,13 @@ class GameActivity : AppCompatActivity() {
 
         player1 = binding.player1PawnRed
         player2 = binding.player2PawnBlack
+
         imageviews = listOf(
             player1!!, player2!!
         )
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
         }
-
-
 
         b1_roll!!.setOnClickListener {
             println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
