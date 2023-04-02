@@ -3,6 +3,7 @@ package ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -38,6 +39,12 @@ class PlayerLobbyActivity : AppCompatActivity() {
         binding.fabAddPlayerButton.setOnClickListener(){
             showAddPlayerDialog().show()
         }
+
+        binding.proceedButton.setOnClickListener(){
+            val goToGameActivity = Intent(applicationContext,GameActivity::class.java
+            )
+            startActivity(goToGameActivity)
+        }
     }
     fun showAddPlayerDialog(): Dialog {
         return this!!.let{
@@ -46,9 +53,10 @@ class PlayerLobbyActivity : AppCompatActivity() {
                 DialogAddPlayerBinding.inflate(it.layoutInflater)
             with(builder){
                 setPositiveButton("ADD", DialogInterface.OnClickListener{ dialog, id->
-
+                    //Save Player's name
                     PreferenceUtility(applicationContext).apply {
                         saveStringPreferences("playerName", dialogAddPlayerBinding.playerName.text.toString())
+                        println(dialogAddPlayerBinding.playerName.text.toString())
                     }
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
