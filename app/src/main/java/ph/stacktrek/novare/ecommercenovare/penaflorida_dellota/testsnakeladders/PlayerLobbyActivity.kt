@@ -12,7 +12,6 @@ import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityPlayerLobbyBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.DialogAddPlayerBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PlayerNameUtility
-import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PreferenceUtility
 
 class PlayerLobbyActivity : AppCompatActivity() {
 
@@ -61,7 +60,6 @@ class PlayerLobbyActivity : AppCompatActivity() {
                     val playerName = dialogAddPlayerBinding.playerName.text.toString()
                     PlayerNameUtility(applicationContext).addPlayerName(playerName)
                     playerList.add(playerName)
-                    PlayerNameUtility(applicationContext).savePlayerNames(playerList.toSet())
 
                     // Update the displayed player names
                     binding.playerNamesList.text = playerList.joinToString("\n")
