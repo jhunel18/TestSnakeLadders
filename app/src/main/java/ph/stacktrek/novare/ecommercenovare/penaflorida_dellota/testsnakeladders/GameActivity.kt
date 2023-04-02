@@ -12,7 +12,6 @@ import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.model.Player
 
 
-
 import java.util.*
 
 
@@ -22,6 +21,9 @@ class GameActivity : AppCompatActivity() {
     var turn: Int = 0
     var player1: ImageView? = null
     var player2: ImageView? = null
+    var player3: ImageView? = null
+    var player4: ImageView? = null
+    var player5: ImageView? = null
     var playerList: List<Player>? = null
     var imageviews: List<ImageView>? = null
     private lateinit var binding: ActivityGameBinding
@@ -36,29 +38,39 @@ class GameActivity : AppCompatActivity() {
 
         playerList = listOf<Player>(
             Player("jhunel"),
-            //Player("joash")
+            Player("joash"),
+            Player("j"),
+            Player("jj"),
+            Player("jjj")
         )
 
         player1 = binding.player1PawnRed
         player2 = binding.player2PawnBlack
+        player3 = binding.player3PawnYellow
+        player4 = binding.player4PawnGreen
+        player5 = binding.player5PawnBlue
 
         imageviews = listOf(
-            player1!!, player2!!
+            player1!!, player2!!, player3!!, player4!!, player5!!
         )
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
-            player.pon!!.isInvisible=false
+            player.pon!!.isInvisible = false
         }
 
         b1_roll!!.setOnClickListener {
             println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
             roll(playerList!![turn])
             if ((playerList!![turn].position) / 10 % 2 == 0) {
-                playerList!![turn].pon!!.x = playerList!![turn].position % 10.toFloat() * 108
-                playerList!![turn].pon!!.y = 1275f - ((playerList!![turn].position) / 10) * 108
+                playerList!![turn].pon!!.x =
+                    playerList!![turn].position % 10.toFloat() * 108 + turn * 10
+                playerList!![turn].pon!!.y =
+                    1275f - ((playerList!![turn].position) / 10) * 108 + turn * 10
             } else {
-                playerList!![turn].pon!!.x = (9 - playerList!![turn].position % 10.toFloat()) * 108
-                playerList!![turn].pon!!.y = 1275f - ((playerList!![turn].position) / 10) * 108
+                playerList!![turn].pon!!.x =
+                    (9 - playerList!![turn].position % 10.toFloat()) * 108 + turn * 10
+                playerList!![turn].pon!!.y =
+                    1275f - ((playerList!![turn].position) / 10) * 108 + turn * 10
             }
 
             if (turn < playerList!!.size - 1) {
