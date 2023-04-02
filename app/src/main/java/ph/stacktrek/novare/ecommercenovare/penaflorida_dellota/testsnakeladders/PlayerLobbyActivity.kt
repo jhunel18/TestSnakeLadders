@@ -65,7 +65,6 @@ class PlayerLobbyActivity : AppCompatActivity() {
                     binding.playerNamesList.text = playerList.joinToString("\n")
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
-
                 })
                 setView(dialogAddPlayerBinding.root)
                 create()
