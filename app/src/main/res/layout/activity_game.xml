@@ -70,16 +70,16 @@
 
     <ImageView
         android:id="@+id/player1_pawn_red"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_alignParentStart="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/box"
+        android:background="#BF1D1D"
         tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="275dp"
-        android:visibility="invisible"/>/>
+        android:layout_marginBottom="285dp"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/player2_pawn_black"
@@ -87,13 +87,48 @@
         android:layout_height="15dp"
         android:layout_alignParentStart="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@android:drawable/alert_dark_frame"
+        android:background="@color/black"
         tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="280dp"
+        android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/player3_pawn_yellow"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#DCC713"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="275dp"
         android:visibility="invisible"/>
-
+    <ImageView
+        android:id="@+id/player4_pawn_green"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#2AB52F"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="270dp"
+        android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/player5_pawn_blue"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#2637A5"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="265dp"
+        android:visibility="invisible"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
