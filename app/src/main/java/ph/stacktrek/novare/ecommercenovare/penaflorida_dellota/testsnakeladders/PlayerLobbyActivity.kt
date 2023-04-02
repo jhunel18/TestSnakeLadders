@@ -11,30 +11,34 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMainBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityPlayerLobbyBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.DialogAddPlayerBinding
+import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PlayerNameUtility
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PreferenceUtility
 
 class PlayerLobbyActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityPlayerLobbyBinding
+    private val playerList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerLobbyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Get player name from shared preferences
-        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
-        val playerName = sharedPref.getString("playerName", "")
+        PlayerNameUtility(applicationContext).apply {
+            // Load existing player names
+            val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
+            val playerNames = sharedPref.getStringSet("playerNames", emptySet())
+            if (playerNames != null) {
+                playerList.addAll(playerNames)
+            }
 
-        // Debug logs
-        Log.d("PlayerLobbyActivity", "Player name retrieved: $playerName")
-        Log.d("PlayerLobbyActivity", "Shared preferences: $sharedPref")
+            // Display player names in TextView
+            binding.playerNamesList.text = playerList.joinToString("\n")
+        }
 
-//        with(binding.playerList){
-//            layoutManager = LinearLayoutManager(applicationContext,
-//                LinearLayoutManager.VERTICAL,
-//                false)
-//        }
+        binding.fabAddPlayerButton.setOnClickListener(){
+            showAddPlayerDialog().show()
+        }
 
         binding.fabAddPlayerButton.setOnClickListener(){
             showAddPlayerDialog().show()
@@ -53,11 +57,14 @@ class PlayerLobbyActivity : AppCompatActivity() {
                 DialogAddPlayerBinding.inflate(it.layoutInflater)
             with(builder){
                 setPositiveButton("ADD", DialogInterface.OnClickListener{ dialog, id->
-                    //Save Player's name
-                    PreferenceUtility(applicationContext).apply {
-                        saveStringPreferences("playerName", dialogAddPlayerBinding.playerName.text.toString())
-                        println(dialogAddPlayerBinding.playerName.text.toString())
-                    }
+
+                    val playerName = dialogAddPlayerBinding.playerName.text.toString()
+                    PlayerNameUtility(applicationContext).addPlayerName(playerName)
+                    playerList.add(playerName)
+                    PlayerNameUtility(applicationContext).savePlayerNames(playerList.toSet())
+
+                    // Update the displayed player names
+                    binding.playerNamesList.text = playerList.joinToString("\n")
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
 
