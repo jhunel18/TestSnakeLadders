@@ -43,9 +43,16 @@ class PlayerLobbyActivity : AppCompatActivity() {
             showAddPlayerDialog().show()
         }
 
+//        binding.proceedButton.setOnClickListener(){
+//            val goToGameActivity = Intent(applicationContext,GameActivity::class.java
+//            )
+//
+//            startActivity(goToGameActivity)
+//        }
         binding.proceedButton.setOnClickListener(){
             val goToGameActivity = Intent(applicationContext,GameActivity::class.java
             )
+            goToGameActivity.putExtra("playerNames", playerList.toTypedArray())
             startActivity(goToGameActivity)
         }
     }

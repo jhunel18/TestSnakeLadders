@@ -10,6 +10,7 @@ import androidx.core.view.isInvisible
 
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityGameBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.model.Player
+import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PlayerNameUtility
 
 
 import java.util.*
@@ -24,7 +25,8 @@ class GameActivity : AppCompatActivity() {
     var player3: ImageView? = null
     var player4: ImageView? = null
     var player5: ImageView? = null
-    var playerList: List<Player>? = null
+    var playerList: MutableList<Player>?=null
+    //private val playerList = mutableListOf<String>()
     var imageviews: List<ImageView>? = null
     private lateinit var binding: ActivityGameBinding
 
@@ -36,13 +38,23 @@ class GameActivity : AppCompatActivity() {
         b1_roll = binding.b1Roll
         iv_dice = binding.ivDice
 
-        playerList = listOf<Player>(
-            Player("jhunel"),
-            Player("joash"),
-            Player("j"),
-            Player("jj"),
-            Player("jjj")
-        )
+        playerList= mutableListOf()
+        // Retrieve the player names from the Intent extra
+        val playerNames = intent.getStringArrayExtra("playerNames")
+
+        if (playerNames != null) {
+            for(name in playerNames){
+                playerList!!.add(Player(name))
+            }
+        }
+
+//        playerList = mutableListOf(
+//            Player("jhunel"),
+//            Player("joash"),
+//            Player("j"),
+//            Player("jj"),
+//            Player("jjj")
+//        )
 
         player1 = binding.player1PawnRed
         player2 = binding.player2PawnBlack
@@ -72,11 +84,12 @@ class GameActivity : AppCompatActivity() {
                 playerList!![turn].pon!!.y =
                     1275f - ((playerList!![turn].position) / 10) * 108 + turn * 10
             }
-
-            if (turn < playerList!!.size - 1) {
-                turn += 1
-            } else {
-                turn = 0
+            if (playerList!!.size>1) {
+                if (turn < playerList!!.size - 1) {
+                    turn += 1
+                } else {
+                    turn = 0
+                }
             }
         }
 
