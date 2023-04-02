@@ -6,9 +6,11 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMainBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityPlayerLobbyBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.DialogAddPlayerBinding
+import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PreferenceUtility
 
 class PlayerLobbyActivity : AppCompatActivity() {
 
@@ -27,8 +29,11 @@ class PlayerLobbyActivity : AppCompatActivity() {
         Log.d("PlayerLobbyActivity", "Player name retrieved: $playerName")
         Log.d("PlayerLobbyActivity", "Shared preferences: $sharedPref")
 
-        // Set player name to TextView
-        binding.playerList.text =playerName
+//        with(binding.playerList){
+//            layoutManager = LinearLayoutManager(applicationContext,
+//                LinearLayoutManager.VERTICAL,
+//                false)
+//        }
 
         binding.fabAddPlayerButton.setOnClickListener(){
             showAddPlayerDialog().show()
@@ -41,15 +46,10 @@ class PlayerLobbyActivity : AppCompatActivity() {
                 DialogAddPlayerBinding.inflate(it.layoutInflater)
             with(builder){
                 setPositiveButton("ADD", DialogInterface.OnClickListener{ dialog, id->
-                   // dialogAddPlayerBinding.playerName.text.toString()
 
-                    //Added code for shared preference
-
-                    val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
-                    val editor = sharedPref.edit()
-                    editor.putString("playerName", dialogAddPlayerBinding.playerName.text.toString())
-                    editor.apply()
-
+                    PreferenceUtility(applicationContext).apply {
+                        saveStringPreferences("playerName", dialogAddPlayerBinding.playerName.text.toString())
+                    }
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
 
