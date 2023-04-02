@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityGameBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.model.Player
@@ -35,7 +36,7 @@ class GameActivity : AppCompatActivity() {
 
         playerList = listOf<Player>(
             Player("jhunel"),
-            Player("joash")
+            //Player("joash")
         )
 
         player1 = binding.player1PawnRed
@@ -46,6 +47,7 @@ class GameActivity : AppCompatActivity() {
         )
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
+            player.pon!!.isInvisible=false
         }
 
         b1_roll!!.setOnClickListener {
