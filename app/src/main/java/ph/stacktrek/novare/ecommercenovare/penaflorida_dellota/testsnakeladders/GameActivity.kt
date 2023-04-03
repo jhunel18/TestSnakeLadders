@@ -1,6 +1,7 @@
 package ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -27,6 +28,7 @@ class GameActivity : AppCompatActivity() {
     var player4: ImageView? = null
     var player5: ImageView? = null
     var playerList: MutableList<Player>? = null
+    var colorList: List<String>?=null
     var turnIndicator:TextView? = null
 
     var imageviews: List<ImageView>? = null
@@ -63,6 +65,12 @@ class GameActivity : AppCompatActivity() {
             player1!!, player2!!, player3!!, player4!!, player5!!
         )
 
+        colorList= listOf(
+            "#BF1D1D","#000000","#DCC713","#2AB52F","#2637A5"
+        )
+
+
+
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
             player.pon!!.isInvisible = false
@@ -73,7 +81,7 @@ class GameActivity : AppCompatActivity() {
                     ((playerList!![index].position % 10.toFloat() * ratio!!)) + (ratio!! * index / 10)
                 playerList!![index].pon!!.y =
                     height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * index / 10)
-
+                turnIndicator!!.setTextColor(Color.parseColor(colorList!![turn]))
                 turnIndicator!!.setText(playerList!![turn].name).toString()
             }
         }
@@ -99,6 +107,7 @@ class GameActivity : AppCompatActivity() {
                     turn = 0
                 }
             }
+            turnIndicator!!.setTextColor(Color.parseColor(colorList!![turn]))
             turnIndicator!!.setText(playerList!![turn].name).toString()
         }
 
