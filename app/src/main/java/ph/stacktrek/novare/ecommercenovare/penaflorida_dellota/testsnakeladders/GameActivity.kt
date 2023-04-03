@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
@@ -26,6 +27,7 @@ class GameActivity : AppCompatActivity() {
     var player4: ImageView? = null
     var player5: ImageView? = null
     var playerList: MutableList<Player>? = null
+    var turnIndicator:TextView? = null
 
     //private val playerList = mutableListOf<String>()
     var imageviews: List<ImageView>? = null
@@ -36,7 +38,8 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         board = binding.board
-        println(board!!.layoutParams.width)
+//        println(board!!.layoutParams.width)
+        turnIndicator = binding.turnIndicator
         b1_roll = binding.b1Roll
         iv_dice = binding.ivDice
 
@@ -95,8 +98,10 @@ class GameActivity : AppCompatActivity() {
 
                 println(playerList!![index].pon!!.x)
                 println(playerList!![index].pon!!.y)
+//                turnIndicator!!.setText(playerList!![turn].name).toString()
             }
         }
+
         b1_roll!!.setOnClickListener {
 
             println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
@@ -122,6 +127,7 @@ class GameActivity : AppCompatActivity() {
                     turn = 0
                 }
             }
+            turnIndicator!!.setText(playerList!![turn].name).toString()
             println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
 
 //            playerList!![turn].pon!!.x=500f
