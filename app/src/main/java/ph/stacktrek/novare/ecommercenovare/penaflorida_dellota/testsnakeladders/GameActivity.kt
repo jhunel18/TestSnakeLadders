@@ -98,7 +98,7 @@ class GameActivity : AppCompatActivity() {
 
                 println(playerList!![index].pon!!.x)
                 println(playerList!![index].pon!!.y)
-//                turnIndicator!!.setText(playerList!![turn].name).toString()
+                turnIndicator!!.setText(playerList!![turn].name).toString()
             }
         }
 
