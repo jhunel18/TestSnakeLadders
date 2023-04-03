@@ -8,14 +8,11 @@ import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.PlayerItemBinding
 
 class PlayerAdapter(private val playerList: List<String>) : RecyclerView.Adapter<PlayerViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val binding = LayoutInflater.from(parent.context).inflate(R.layout.player_item, parent, false)
         return PlayerViewHolder(binding)
 
     }
-
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         holder.bind(playerList[position])
     }

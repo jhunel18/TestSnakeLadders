@@ -15,9 +15,6 @@
             android:name=".PlayerLobbyActivity"
             android:exported="false" />
         <activity
-            android:name=".Splash"
-            android:exported="false" />
-        <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity

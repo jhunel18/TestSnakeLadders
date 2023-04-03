@@ -33,13 +33,4 @@
             }
         }
 
-    //    fun gotos(view: View?) {
-    //        val nextpage = Intent(this@MainActivity, Main2Activity::class.java)
-    //        startActivity(nextpage)
-    //    }
-    //
-    //    fun gotox(view: View?) {
-    //        val nextpages = Intent(this@MainActivity, Instruction::class.java)
-    //        startActivity(nextpages)
-    //    }
     }

@@ -66,8 +66,7 @@ class PlayerLobbyActivity : AppCompatActivity() {
                     PlayerNameUtility(applicationContext).addPlayerName(playerName)
                     playerList.add(playerName)
 
-//                    // Update the displayed player names
-//                    binding.playerNamesList.text = playerList.joinToString("\n")
+            // Update the displayed player names
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
                 })

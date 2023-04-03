@@ -29,7 +29,6 @@ class GameActivity : AppCompatActivity() {
     var playerList: MutableList<Player>? = null
     var turnIndicator:TextView? = null
 
-    //private val playerList = mutableListOf<String>()
     var imageviews: List<ImageView>? = null
     private lateinit var binding: ActivityGameBinding
 
@@ -38,7 +37,7 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         board = binding.board
-//        println(board!!.layoutParams.width)
+
         turnIndicator = binding.turnIndicator
         b1_roll = binding.b1Roll
         iv_dice = binding.ivDice
@@ -54,14 +53,6 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-//        playerList = mutableListOf(
-//            Player("jhunel"),
-//            Player("joash"),
-//            Player("j"),
-//            Player("jj"),
-//            Player("jjj")
-//        )
-
         player1 = binding.player1PawnRed
         player2 = binding.player2PawnBlack
         player3 = binding.player3PawnYellow
@@ -71,19 +62,6 @@ class GameActivity : AppCompatActivity() {
         imageviews = listOf(
             player1!!, player2!!, player3!!, player4!!, player5!!
         )
-
-//            playerList!!.forEachIndexed { index, player ->
-//                player.pon = imageviews!![index]
-//                player.pon!!.isInvisible = false
-//               ratio = (board!!.width.toFloat()) / 10
-//                height = board!!.height.toFloat()
-//                println(ratio)
-//                println(height)
-//                println(playerList!![turn].pon!!.x)
-//                println(playerList!![turn].pon!!.y)
-//            }
-
-
 
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
@@ -96,18 +74,12 @@ class GameActivity : AppCompatActivity() {
                 playerList!![index].pon!!.y =
                     height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * index / 10)
 
-                println(playerList!![index].pon!!.x)
-                println(playerList!![index].pon!!.y)
                 turnIndicator!!.setText(playerList!![turn].name).toString()
             }
         }
 
         b1_roll!!.setOnClickListener {
 
-            println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
-
-            println(playerList!![turn].pon!!.x)
-            println(playerList!![turn].pon!!.y)
             roll(playerList!![turn])
             if ((playerList!![turn].position) / 10 % 2 == 0) {
                 playerList!![turn].pon!!.x =
@@ -128,28 +100,10 @@ class GameActivity : AppCompatActivity() {
                 }
             }
             turnIndicator!!.setText(playerList!![turn].name).toString()
-            println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
-
-//            playerList!![turn].pon!!.x=500f
-//            playerList!![turn].pon!!.y=500f
-            println(playerList!![turn].pon!!.x)
-            println(playerList!![turn].pon!!.y)
         }
 
 
     }
-
-//    override fun onWindowFocusChanged(focus: Boolean) {
-//        super.onWindowFocusChanged(focus)
-//        ratio = (board!!.width.toFloat()) / 10
-//        height = board!!.height.toFloat()
-//        playerList!![turn].pon!!.x =
-//            ((playerList!![turn].position % 10.toFloat() * ratio!!)) + (ratio!! * turn / 10)
-//        playerList!![turn].pon!!.y =
-//            height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * turn / 10)
-//        println(ratio)
-//        println(height)
-//    }
 
     private fun roll(player: Player) {
         val r = Random()
