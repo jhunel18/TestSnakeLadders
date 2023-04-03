@@ -87,7 +87,10 @@
                   android:layout_gravity="bottom"
                   android:height="48dp"
                   android:background="@drawable/button"
-                  android:gravity="center" />
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="25dp"/>
+
 
               <ImageView
                 android:id="@+id/player1_pawn_red"

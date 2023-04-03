@@ -81,7 +81,7 @@ class GameActivity : AppCompatActivity() {
                     ((playerList!![index].position % 10.toFloat() * ratio!!)) + (ratio!! * index / 10)
                 playerList!![index].pon!!.y =
                     height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * index / 10)
-                turnIndicator!!.setTextColor(Color.parseColor(colorList!![turn]))
+                turnIndicator!!.setBackgroundColor(Color.parseColor(colorList!![turn]))
                 turnIndicator!!.setText(playerList!![turn].name).toString()
             }
         }
@@ -107,7 +107,7 @@ class GameActivity : AppCompatActivity() {
                     turn = 0
                 }
             }
-            turnIndicator!!.setTextColor(Color.parseColor(colorList!![turn]))
+            turnIndicator!!.setBackgroundColor(Color.parseColor(colorList!![turn]))
             turnIndicator!!.setText(playerList!![turn].name).toString()
         }
 
