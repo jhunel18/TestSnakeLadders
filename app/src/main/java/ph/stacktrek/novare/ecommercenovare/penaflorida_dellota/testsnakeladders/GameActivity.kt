@@ -1,22 +1,22 @@
 package ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders
 
-import android.os.Bundle
 
+import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
-
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityGameBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.model.Player
-import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.utility.PlayerNameUtility
-
-
 import java.util.*
 
 
 class GameActivity : AppCompatActivity() {
+    var board: ImageView? = null
+    var ratio: Float? = null
+    var height: Float? = null
     var b1_roll: Button? = null
     var iv_dice: ImageView? = null
     var turn: Int = 0
@@ -25,7 +25,8 @@ class GameActivity : AppCompatActivity() {
     var player3: ImageView? = null
     var player4: ImageView? = null
     var player5: ImageView? = null
-    var playerList: MutableList<Player>?=null
+    var playerList: MutableList<Player>? = null
+
     //private val playerList = mutableListOf<String>()
     var imageviews: List<ImageView>? = null
     private lateinit var binding: ActivityGameBinding
@@ -34,16 +35,18 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        board = binding.board
+        println(board!!.layoutParams.width)
         b1_roll = binding.b1Roll
         iv_dice = binding.ivDice
 
-        playerList= mutableListOf()
+        ratio = (board!!.width.toFloat()) / 10
+        playerList = mutableListOf()
         // Retrieve the player names from the Intent extra
         val playerNames = intent.getStringArrayExtra("playerNames")
 
         if (playerNames != null) {
-            for(name in playerNames){
+            for (name in playerNames) {
                 playerList!!.add(Player(name))
             }
         }
@@ -65,37 +68,82 @@ class GameActivity : AppCompatActivity() {
         imageviews = listOf(
             player1!!, player2!!, player3!!, player4!!, player5!!
         )
+
+//            playerList!!.forEachIndexed { index, player ->
+//                player.pon = imageviews!![index]
+//                player.pon!!.isInvisible = false
+//               ratio = (board!!.width.toFloat()) / 10
+//                height = board!!.height.toFloat()
+//                println(ratio)
+//                println(height)
+//                println(playerList!![turn].pon!!.x)
+//                println(playerList!![turn].pon!!.y)
+//            }
+
+
+
         playerList!!.forEachIndexed { index, player ->
             player.pon = imageviews!![index]
             player.pon!!.isInvisible = false
-        }
+            board!!.post {
+                ratio = (board!!.width.toFloat()) / 10
+                height = board!!.height.toFloat()
+                playerList!![index].pon!!.x =
+                    ((playerList!![index].position % 10.toFloat() * ratio!!)) + (ratio!! * index / 10)
+                playerList!![index].pon!!.y =
+                    height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * index / 10)
 
+                println(playerList!![index].pon!!.x)
+                println(playerList!![index].pon!!.y)
+            }
+        }
         b1_roll!!.setOnClickListener {
+
             println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
+
+            println(playerList!![turn].pon!!.x)
+            println(playerList!![turn].pon!!.y)
             roll(playerList!![turn])
             if ((playerList!![turn].position) / 10 % 2 == 0) {
                 playerList!![turn].pon!!.x =
-                    playerList!![turn].position % 10.toFloat() * 108 + turn * 10
+                    ((playerList!![turn].position % 10.toFloat() * ratio!!)) + (ratio!! * turn / 10)
                 playerList!![turn].pon!!.y =
-                    1275f - ((playerList!![turn].position) / 10) * 108 + turn * 10
+                    height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * turn / 10)
             } else {
                 playerList!![turn].pon!!.x =
-                    (9 - playerList!![turn].position % 10.toFloat()) * 108 + turn * 10
+                    ((9 - playerList!![turn].position % 10.toFloat()) * ratio!!) + (ratio!! * turn / 10)
                 playerList!![turn].pon!!.y =
-                    1275f - ((playerList!![turn].position) / 10) * 108 + turn * 10
+                    height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * turn / 10)
             }
-            if (playerList!!.size>1) {
+            if (playerList!!.size > 1) {
                 if (turn < playerList!!.size - 1) {
                     turn += 1
                 } else {
                     turn = 0
                 }
             }
+            println(playerList!![turn].name + " is now at position " + playerList!![turn].position)
+
+//            playerList!![turn].pon!!.x=500f
+//            playerList!![turn].pon!!.y=500f
+            println(playerList!![turn].pon!!.x)
+            println(playerList!![turn].pon!!.y)
         }
 
 
     }
 
+//    override fun onWindowFocusChanged(focus: Boolean) {
+//        super.onWindowFocusChanged(focus)
+//        ratio = (board!!.width.toFloat()) / 10
+//        height = board!!.height.toFloat()
+//        playerList!![turn].pon!!.x =
+//            ((playerList!![turn].position % 10.toFloat() * ratio!!)) + (ratio!! * turn / 10)
+//        playerList!![turn].pon!!.y =
+//            height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * turn / 10)
+//        println(ratio)
+//        println(height)
+//    }
 
     private fun roll(player: Player) {
         val r = Random()
