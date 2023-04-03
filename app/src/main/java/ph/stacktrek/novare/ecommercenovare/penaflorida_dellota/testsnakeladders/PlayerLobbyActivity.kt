@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.adapter.PlayerAdapter
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityMainBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.ActivityPlayerLobbyBinding
 import ph.stacktrek.novare.ecommercenovare.penaflorida_dellota.testsnakeladders.databinding.DialogAddPlayerBinding
@@ -17,11 +18,17 @@ class PlayerLobbyActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityPlayerLobbyBinding
     private val playerList = mutableListOf<String>()
+    private lateinit var playerAdapter: PlayerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerLobbyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Display player names in RecyclerView
+        val playerAdapter = PlayerAdapter(playerList)
+        binding.playerNamesList.layoutManager = LinearLayoutManager(this@PlayerLobbyActivity)
+        binding.playerNamesList.adapter = playerAdapter
 
         PlayerNameUtility(applicationContext).apply {
             // Load existing player names
@@ -30,9 +37,6 @@ class PlayerLobbyActivity : AppCompatActivity() {
             if (playerNames != null) {
                 playerList.addAll(playerNames)
             }
-
-            // Display player names in TextView
-            binding.playerNamesList.text = playerList.joinToString("\n")
         }
 
         binding.fabAddPlayerButton.setOnClickListener(){
@@ -43,12 +47,6 @@ class PlayerLobbyActivity : AppCompatActivity() {
             showAddPlayerDialog().show()
         }
 
-//        binding.proceedButton.setOnClickListener(){
-//            val goToGameActivity = Intent(applicationContext,GameActivity::class.java
-//            )
-//
-//            startActivity(goToGameActivity)
-//        }
         binding.proceedButton.setOnClickListener(){
             val goToGameActivity = Intent(applicationContext,GameActivity::class.java
             )
@@ -68,8 +66,8 @@ class PlayerLobbyActivity : AppCompatActivity() {
                     PlayerNameUtility(applicationContext).addPlayerName(playerName)
                     playerList.add(playerName)
 
-                    // Update the displayed player names
-                    binding.playerNamesList.text = playerList.joinToString("\n")
+//                    // Update the displayed player names
+//                    binding.playerNamesList.text = playerList.joinToString("\n")
                 })
                 setNegativeButton("CANCEL", DialogInterface.OnClickListener{ dialog, id->
                 })
