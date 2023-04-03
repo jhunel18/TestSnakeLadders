@@ -78,11 +78,11 @@ class GameActivity : AppCompatActivity() {
                 ratio = (board!!.width.toFloat()) / 10
                 height = board!!.height.toFloat()
                 playerList!![index].pon!!.x =
-                    ((playerList!![index].position % 10.toFloat() * ratio!!)) + (ratio!! * index / 10)
+                      (ratio!! * index / 10)
                 playerList!![index].pon!!.y =
-                    height!! / 2 - ((playerList!![turn].position / 10) * ratio!!) + (ratio!! * 4) + (ratio!! * index / 10)
+                    height!! / 2  + (ratio!! * 4) + (ratio!! * index / 10)
                 turnIndicator!!.setBackgroundColor(Color.parseColor(colorList!![turn]))
-                turnIndicator!!.setText(playerList!![turn].name).toString()
+                turnIndicator!!.setText(playerList!![turn].name+"'s turn").toString()
             }
         }
 
@@ -108,7 +108,7 @@ class GameActivity : AppCompatActivity() {
                 }
             }
             turnIndicator!!.setBackgroundColor(Color.parseColor(colorList!![turn]))
-            turnIndicator!!.setText(playerList!![turn].name).toString()
+            turnIndicator!!.setText(playerList!![turn].name+"'s turn").toString()
         }
 
 

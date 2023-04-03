@@ -39,7 +39,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="&#x25cf; There are 2 players in this game (Player and AI) and board size is 100.(10 X 10).
+            android:text="&#x25cf; Snakes and laddes is a game can be played with 1 to 5 players.
 "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#618d57"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="&#x25cf; Players must use their respective buttons to roll the dice."
+            android:text="&#x25cf; Players must wait their turn to roll the dice."
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#618d57"
             android:textSize="18dp" />
