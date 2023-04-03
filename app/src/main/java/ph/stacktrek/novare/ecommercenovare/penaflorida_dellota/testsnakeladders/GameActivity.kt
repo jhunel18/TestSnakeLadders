@@ -123,6 +123,7 @@ class GameActivity : AppCompatActivity() {
                 }
             }
             count += rolledNumber
+
             //snakes
             when (count) {
                 98 -> {
