@@ -12,13 +12,10 @@
         private lateinit var binding: ActivityMainBinding
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-    //        setContentView(R.layout.activity_main)
+
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-    //        val floatingImage = findViewById<ImageView>(R.id.floating_image)
-    //        val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
-    //        floatingImage.startAnimation(floatAnimation)
             val floatingImage = binding.floatingImage
             val floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_animation)
             floatingImage.startAnimation(floatAnimation)
